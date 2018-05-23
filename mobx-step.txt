@@ -1,0 +1,51 @@
+npm i mobx mobx-react -s
+npm i babel-preset-stage-1 babel-plugin-transform-decorators-legacy -d
+.babelrc 
+presets中加入  "stage-1"
+plugins中加入  "transform-decorators-legacy";
+
+在app-state.js中输入如下代码
+
+import {
+    observable,
+    computed,
+    action
+} from 'mobx';
+
+class AppState {
+    @observable count = 0
+    @observable name = 'chenjian'
+    @computed get msg(){
+        return `${this.name} say this count is ${this.count}`
+    }
+}
+
+const appState = new AppState();
+
+export default appState;
+
+在app.js里面  添加如下代码 
+import { Provider } from 'mobx-react';
+
+import AppState from './store/app-state';
+
+<Provider>
+....
+</Provider>
+
+npm i prop-types -s
+
+./view/form/index.jsx
+import {
+    observer,
+    inject
+} from 'mobx-react'
+
+@inject('appState') @observer
+
+reurn (<div>{this.props.appState.msg}</div>)
+
+
+
+
+
