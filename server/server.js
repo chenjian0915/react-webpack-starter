@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const session = require('express-session')
 const bodyParser = require('body-parser');
 
 
@@ -9,7 +10,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:flase}));
+app.use(bodyParser.urlencoded({extended:false}));
 
 
 app.use(session({
@@ -20,7 +21,8 @@ app.use(session({
     secret: 'react cnode class'
 }));
 
-
+app.use('/api/user',require('./handle-login'));
+app.use('/api',require('./proxy'))
 
 
 app.use(function (error, req, res, next) {

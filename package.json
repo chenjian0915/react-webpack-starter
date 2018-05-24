@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf /dist && webpack --config ./build/webpack.config.js",
-    "watch": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.js"
+    "watch": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.js",
+    "dev:client": "node ./server/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "antd": "^3.5.0",
+    "axios": "^0.18.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-import": "^1.7.0",
@@ -19,13 +21,17 @@
     "babel-preset-es2015-loose": "^8.0.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "body-parser": "^1.18.3",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "html-webpack-plugin": "^3.2.0",
     "less-loader": "^4.1.0",
     "mobx": "^4.2.1",
     "mobx-react": "^5.1.2",
     "prop-types": "^15.6.1",
+    "query-string": "^6.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-hot-loader": "^4.1.3",

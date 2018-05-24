@@ -6,7 +6,7 @@ import { Button } from 'antd';
 export default class App extends React.Component {
     render(){
         return [<div key="nav"><Button><Link to="/">首页</Link></Button><Button><Link to="/list">关于</Link></Button>
-            <Button><Link to="/form">主题列表</Link></Button></div>,<Routes key="Router" />]
+            <Button><Link to="/apitest">接口测试</Link></Button><Button><Link to="/form">主题列表</Link></Button></div>,<Routes key="Router" />]
 
     }
 }
