@@ -13,14 +13,16 @@ module.exports = function(req,res,next){
          })
      }
 
-     const query = Object.assign({},req.query);
+     const query = Object.assign({},req.query, {
+         accesstoken : (needAccessToken && req.method ==='GET') ? user.accessToken : ''
+     });
      if(query.needAccessToken) delete query.needAccessToken;
 
      axios(`${baseUrl}${path}`,{
         method : req.method,
         params : query,
         data : Object.assign({},req.body,{
-            accesstoken : user.accessToken
+            accesstoken : (needAccessToken && req.method ==='POST') ? user.accessToken : ''
         }),
         header : {
             'Content-Type' : 'application/x-www-form-urlencode'
@@ -31,8 +33,7 @@ module.exports = function(req,res,next){
         }else{
             res.status(resp.status).send(resp.data);
         }
-     })
-     .catch(err => {
+     }).catch(err => {
          if(err.response){
              res.status(500).send(err.response.data)
          }else{

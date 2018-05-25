@@ -5,9 +5,8 @@ const session = require('express-session')
 const bodyParser = require('body-parser');
 
 
-
-
 const app = express();
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -22,14 +21,14 @@ app.use(session({
 }));
 
 app.use('/api/user',require('./handle-login'));
-app.use('/api',require('./proxy'))
+app.use('/api',require('./proxy'));
+
 
 
 app.use(function (error, req, res, next) {
-    console.log(error)
     res.status(500).send(error)
-})
+});
 
 app.listen(3333, function () {
     console.log('server is listening on 3333')
-})
+});

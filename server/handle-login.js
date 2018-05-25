@@ -6,32 +6,30 @@ const baseUrl = 'http://cnodejs.org/api/v1';
 router.post('/login',function(req,res,next){
     axios.post(`${baseUrl}/accesstoken`,{
         accesstoken: req.body.accessToken
-    })
-    .then(resp => {
+    }).then(resp => {
         if(resp.status === 200 && resp.data.success){
             req.session.user = {
                 accessToken: req.body.accessToken,
                 loginName: resp.data.loginname,
                 id: resp.data.id,
                 avatarUrl : resp.data.avatar_url
-            }
+            };
             res.json({
                 success : true,
                 data : resp.data
             })
         }
-    })
-    .catch(err => {
+    }).catch(err => {
         if(err.response){
             res.json({
                 success: false,
-                data: error.response
+                data: err.response.data
             })
-        }else{
+        }else{;
             next(err)
         }
-
     })
 });
 
-module.exports = router;
+module.exports = router
+
