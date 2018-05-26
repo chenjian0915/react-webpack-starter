@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const axios = require('axios');
+const queryString = require('query-string')
 
-const baseUrl = 'http://cnodejs.org/api/v1';
+const baseUrl = 'https://cnodejs.org/api/v1';
 
 router.post('/login',function(req,res,next){
-    axios.post(`${baseUrl}/accesstoken`,{
+    axios.post(`${baseUrl}/accesstoken`,queryString.stringify({
         accesstoken: req.body.accessToken
-    }).then(resp => {
+    }))
+    .then(resp => {
         if(resp.status === 200 && resp.data.success){
             req.session.user = {
                 accessToken: req.body.accessToken,

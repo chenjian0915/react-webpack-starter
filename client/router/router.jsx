@@ -9,5 +9,5 @@ export default () => [
     <Route path="/" exact component={List} key="home" />,
     <Route path="/list" component={List} key="list" />,
     <Route path="/form" component={FormComponent} key="form" />,
-    <Route path="/apitest" component={TestApi} key="api-test" />,
+    <Route path="/apitest" component={TestApi} key="apitest" />,
 ];
